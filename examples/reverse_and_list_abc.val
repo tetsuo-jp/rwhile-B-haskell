@@ -1,0 +1,2 @@
+((('var.0).(('seq.(('xoreq.(('var.3).('eq.(('var.1).('var.4))))).('seq.(('loop.(('var.3).(('seq.(('xoreq.(('var.3).('eq.(('var.1).('var.4))))).('xoreq.(('var.3).('eq.(('var.0).('var.4))))))).(('seq.(('xoreq.(('var.3).('eq.(('var.0).('var.4))))).('seq.(('rep.(('cons.(('var.2).('var.0))).('var.0))).('seq.(('rep.(('var.1).('cons.(('var.2).('var.1))))).('xoreq.(('var.3).('eq.(('var.1).('var.4))))))))))).('var.3))))).('xoreq.(('var.3).('eq.(('var.0).('var.4))))))))).('var.1))).
+ ('a.('b.('c.0))))

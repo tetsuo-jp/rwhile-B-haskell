@@ -1,0 +1,3 @@
+read X0;
+  X0 <= cons X0 'aaa;
+write X0

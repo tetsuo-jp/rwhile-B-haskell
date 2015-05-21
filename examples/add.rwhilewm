@@ -1,0 +1,14 @@
+procedure add(X,Y)
+  S <= Y;
+  from  =? Y nil
+  loop  X <= cons nil X;
+        Y <= cons nil Y;
+	cons nil S <= S
+  until =? S nil
+
+read V;
+  X ^= 3;
+  Y ^= 4;
+  call add(X,Y);
+  V <= cons X Y;
+write V

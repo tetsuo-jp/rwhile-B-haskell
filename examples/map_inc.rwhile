@@ -1,0 +1,13 @@
+(* increment all elements of given lists *)
+read X;
+  from  =? X' nil
+  loop  cons A X <= X;
+        X' <= cons (cons nil A) X'   (* A = A + 1 *)
+  until =? X nil;
+
+  (* call reverse(X') *)
+  from  =? X nil
+  loop  cons A X' <= X';
+        X <= cons A X
+  until =? X' nil;
+write X

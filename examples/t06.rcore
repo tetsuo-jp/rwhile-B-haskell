@@ -1,0 +1,3 @@
+read X0;
+  if X0 then X0 <= cons X0 'then else X0 ^= 5 fi X0;
+write X0

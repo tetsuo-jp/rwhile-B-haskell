@@ -1,0 +1,24 @@
+(* X > 0 *)
+procedure halve(X,P)            (* X > 0, P = 0 *)
+  cons nil X <= X;              (* X := X - 1 *)
+  P ^= (nil.nil);               (* P := 1 *)
+
+  from  =? Half nil
+  loop  cons nil X <= X;        (* X := X - 1 *)
+        if =? P (nil.nil) then  (* if P = 1 *)
+          Half <= cons nil Half (* Half := Half + 1 *)
+        fi =? P (nil.nil);
+        P ^= (nil.nil)          (* P := 1 - P *)
+  until =? X nil;
+  X <= Half
+
+procedure unary2binary(U)
+  from  =? B nil
+  loop  call halve(U,P);        (* U := U / 2, P := the parity of U *)
+        B <= cons P B           (* Add P to the highest digit of B *)
+  until =? U nil;
+  U <= B
+
+read V;
+  call unary2binary(V);
+write V

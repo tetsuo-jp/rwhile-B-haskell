@@ -1,0 +1,3 @@
+read X;
+  cons (cons Y Z) U <= cons (nil.nil) nil;
+write X

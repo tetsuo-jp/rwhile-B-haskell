@@ -1,0 +1,19 @@
+(* Chen and Udding, Program inversion: More than fun!, 1990, p.7 
+ * Generating preorder and inorder traversals of a binary tree
+ *)
+read U;
+  T ^= (('dummy.'dummy).0);
+  from =? P nil
+  loop  if =? (=? U nil) nil then
+          cons U (cons D R) <= U;
+	  D' ^= D;
+          P <= cons P D;
+	  T <= cons (cons D' R) T
+	else
+          cons (cons D U) T <= T;
+	  Q <= cons Q D
+        fi =? (hd (hd T)) (tl P)
+  until =? (tl T) U;  (* Are T and U empty? *)
+  T ^= (('dummy.'dummy).0);
+  U <= cons P Q;
+write U

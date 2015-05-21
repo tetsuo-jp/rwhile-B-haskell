@@ -1,0 +1,6 @@
+read X0;  (* reverse *)
+  from  =? X1 nil
+  loop  cons X2 X0 <= X0;
+        X1 <= cons X2 X1
+  until =? X0 nil;
+write X1

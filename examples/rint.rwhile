@@ -1,0 +1,170 @@
+read V;
+  cons (cons (cons 'var II) (cons Cd (cons 'var JJ))) V <= V;
+  X0 ^= (nil.(nil.(nil.(nil.(nil.(nil.(nil.(nil.(nil.(nil.nil))))))))));
+  UPDATE II V; LOOKUP II V; (* clear V *)
+  Cd <= cons Cd nil;
+  from  =? Cd' nil
+  loop  cons (cons Kind Arg) Cd <= Cd;
+	if =? Kind 'loop then
+	  Cd <= cons (cons 'l1E (nil.nil)) (cons (cons Kind Arg) Cd);
+	  Arg <= cons 'l1B (nil.nil)
+	else
+	  if =? Kind 'l1E then
+	    Kind ^= 'l1E;
+	    U <= Arg;
+            cons C' Cd <= Cd;
+	    cons 'loop (cons (cons 'var I) (cons CS (cons DS (cons 'var J)))) <= C';
+            cons (cons 'l1B T) Cd' <= Cd';
+	    T ^= U;  (* clear T *)
+	    LOOKUP I U; (* clear U *)
+	    U ^= CS;
+	    C' <= cons 'loop (cons (cons 'var I) (cons CS (cons DS (cons 'var J))));
+            Cd <= cons U (cons (cons 'l2E C') Cd);
+	    Arg ^= 'l2B
+	  else
+	    if =? Kind 'l2E then
+	      Kind ^= 'l2E;
+	      cons 'loop (cons (cons 'var I) (cons CS (cons DS (cons 'var J)))) <= Arg;
+              cons CS' (cons 'l2B Cd') <= Cd';
+	      CS' ^= CS;  (* clear CS' *)
+	      LOOKUP J U;
+	      C' <= cons 'loop (cons (cons 'var I) (cons CS (cons DS (cons 'var J))));
+              Cd <= cons (cons 'l3E U) (cons C' Cd);
+	      Arg ^= 'l3B
+	    else
+	      if =? (cons Kind Arg) ('l3E.nil) then
+	        Kind ^= 'l3E;
+	        cons C' Cd <= Cd;
+	        cons U Cd' <= Cd';
+	        U ^= 'l3B;
+	        cons 'loop (cons (cons 'var I) (cons CS (cons DS (cons 'var J)))) <= C';
+	        U ^= DS;
+	        C' <= cons 'loop (cons (cons 'var I) (cons CS (cons DS (cons 'var J))));
+	        (* Cd <= cons C' Cd; *)
+	        Cd <= cons U (cons (cons 'l4E C') Cd);
+	        Arg ^= 'l4B
+	      else
+	        if =? Kind 'l4E then
+	          Kind ^= 'l4E;
+	          cons 'loop (cons (cons 'var I) (cons CS (cons DS (cons 'var J)))) <= Arg;
+	          cons U (cons 'l4B Cd') <= Cd';
+		  U ^= DS;  (* clear *)
+		  C' <= cons 'loop (cons (cons 'var I) (cons CS (cons DS (cons 'var J))));
+		  Cd <= cons (cons 'l1E nil) (cons C' Cd);
+		  Arg ^= cons 'l1B nil
+	        else
+	          if =? Kind 'seq then
+	            cons C D <= Arg;
+	            Kind ^= 'seq;  (* clear Kind *)
+	            Cd <= cons C (cons D (cons (cons 'seqE nil) Cd));
+	            Arg ^= 'seqB
+	          else
+	            if =? (cons Kind Arg) ('l3E.(nil.nil)) then
+	              Kind ^= 'l3E;
+	              Arg ^= (nil.nil);
+	              cons Arg Cd <= Cd;
+	              cons U Cd' <= Cd';
+                      U ^= 'l3B
+	            else   (* clear U *)
+	              if =? Kind 'seqE then
+	                Kind ^= 'seqE;
+	                (* Arg = nil *)
+	                cons D (cons C (cons 'seqB Cd')) <= Cd';
+	                Arg <= cons 'seq (cons C D)
+	              else
+	      
+                        (* begin ^= *)
+                        if =? Kind 'xoreq then
+	                  cons (cons 'var K) E <= Arg;
+	                  if =? E 'nil then
+	                    (* do nothing *)
+	                  else
+	                    cons E1 E2 <= E;
+	                    if =? E1 'hd then
+	       	              cons 'var J <= E2;
+	                      LOOKUP J U; UPDATE K (hd U); LOOKUP J U;
+	                      E2 <= cons 'var J
+	                    else
+			      if =? E1 'tl then
+	      	                cons 'var J <= E2;
+	                        LOOKUP J U; UPDATE K (tl U); LOOKUP J U;
+			        E2 <= cons 'var J
+	                      else
+		                if =? E1 'cons then
+		                  cons (cons 'var I) (cons 'var J) <= E2;
+		                  LOOKUP I U; LOOKUP J T;
+                                  UPDATE K (cons U T); LOOKUP J T; LOOKUP I U;
+			          
+		                  E2 <= cons (cons 'var I) (cons 'var J)
+		                else
+		                  if =? E1 'eq then
+		                    cons (cons 'var I) (cons 'var J) <= E2;
+		                    LOOKUP I U; LOOKUP J T; UPDATE K (=? U T); LOOKUP J T; LOOKUP I U;
+				    E2 <= cons (cons 'var I) (cons 'var J)
+		                  else
+				    if =? E1 'var then
+				      J <= E2;
+				      LOOKUP J U; UPDATE K U; LOOKUP J U;
+				      E2 <= J
+				    else
+		                      X0 ^= (nil.nil)
+				    fi =? E1 'var
+		                  fi =? E1 'eq
+		                fi =? E1 'cons
+	                      fi =? E1 'tl
+	                    fi =? E1 'hd;
+	                    E <= cons E1 E2
+	                  fi =? E 'nil;
+	                  Arg <= cons Kind (cons (cons 'var K) E)
+                        else
+			  (* begin Q <= R *)
+			  if =? Kind 'rep then
+			    cons E21 E22 <= Arg;
+			    if =? (hd E22) 'var then
+			      cons 'var J <= E22;
+			      LOOKUP J U; UPDATE J U;
+			      if =? (hd E21) 'var then
+			        cons 'var K <= E21;
+			        UPDATE K U; LOOKUP K U;
+			        E22 <= cons 'var K
+			      else
+			        cons 'cons (cons (cons 'var K1) (cons 'var K2)) <= E21;
+			        LOOKUP J VV; UPDATE J VV;
+			        cons T VV <= U;
+			        UPDATE K1 T; LOOKUP K1 T;
+			        UPDATE K2 VV; LOOKUP K2 VV;
+			        E21 <= cons 'cons (cons (cons 'var K1) (cons 'var K2))
+			      fi =? (hd E21) 'var;
+			      E22 <= cons 'var J
+			    else
+			      cons 'cons (cons (cons 'var I) (cons 'var J)) <= E22;
+			      LOOKUP I U; UPDATE I U;
+			      LOOKUP J VV; UPDATE J VV;
+			      T <= cons U VV;
+			      cons 'var K <= E21;
+			      UPDATE K T; LOOKUP K T;
+			      E21 <= cons 'var K;
+			      E22 <= cons 'cons (cons (cons 'var I) (cons 'var J))
+			    fi =? (hd E22) 'var;
+			    Arg <= cons E21 E22;
+			    Arg <= cons Kind Arg
+			  else
+		            X0 ^= (nil.nil)
+			  fi =? (hd Arg) 'rep
+                        fi =? (hd Arg) 'xoreq
+
+                      fi =? (hd Arg) 'seq
+                    fi =? (hd Arg) 'loop
+                  fi =? Arg 'seqB
+                fi =? Arg ('l1B.nil)
+              fi =? Arg 'l4B
+            fi =? Arg 'l3B
+	  fi =? Arg 'l2B
+        fi =? Arg ('l1B.(nil.nil));
+	Cd' <= cons Arg Cd'
+  until =? Cd nil;
+  cons Cd' nil <= Cd';
+  LOOKUP JJ V; UPDATE JJ V;
+  X0 ^= (nil.(nil.(nil.(nil.(nil.(nil.(nil.(nil.(nil.(nil.nil))))))))));
+  V <= cons (cons (cons 'var II) (cons Cd' (cons 'var JJ))) V;
+write V

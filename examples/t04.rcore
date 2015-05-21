@@ -1,0 +1,3 @@
+read X0;
+  if X0 fi X0;
+write X0
